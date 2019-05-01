@@ -1,0 +1,44 @@
+@import '~antd/lib/style/themes/default.less';
+@import './overrides.less';
+@site-heading-color: #a42723;
+@site-text-color: #100b0a;
+@site-text-color-secondary: #3e2a27;
+@site-border-color-split: #ebedf0;
+@border-color: rgba(245, 165, 152, 100);
+
+:root {
+	--primary-color: #f0a598;
+	--primary-color-darken: #db968b;
+	--primary-hover-color: var(--primary-color-darken);
+}
+
+//Default value for Ant-Design
+@primary-color: #57c6de;
+@primary-hover-color: #49a0b0;
+
+//Overwrite the Ant-Design class
+.ant-btn.ant-btn-primary,
+.ant-btn-primary {
+	background-color: var(--primary-color);
+	border-color: var(--primary-color);
+	&:hover {
+		background-color: var(--primary-hover-color) !important;
+		border-color: var(--primary-hover-color) !important;
+	}
+}
+
+input:hover {
+	border-color: #e0d3d3;
+}
+.ant-input-affix-wrapper:hover,
+.ant-input:hover {
+	border-color: #e0d3d3 !important;
+}
+
+.ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+	border-color: #e0d3d3;
+}
+
+.ant-input-affix-wrapper .ant-input:not(:first-child) {
+	padding-left: 36px !important;
+}
