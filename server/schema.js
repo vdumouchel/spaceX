@@ -5,186 +5,74 @@ module.exports = gql`
 
 	type User {
 		user_id: ID!
-		user_first_name: String
-		user_last_name: String
+		user_fullname: String
 		user_username: String
 		user_email: String
 		user_password: String
 		user_date_joined: Date
-		user_account_deleted: Boolean
-		user_rating: Float
+	}
+	type Launch {
+		flight_number: ID!
+		rocket: Rocket
+		mission_name: String
+		links: Mission
+		launch_year: String
+		launch_date_local: String
+		launch_site: LaunchSite
 	}
 
-	type user_rating {
-		user_rating_id: ID!
-		user_rating_rater_id(user_id: ID): ID!
-		user_rating_rated_id(user_id: ID): ID!
-		user_rating_rating: Float
-		user_rating_comment: String
-		user_rating_date: Date
+	type Rocket {
+		rocket_id: ID!
+		rocket_type: String
 	}
 
-	type Item {
-		item_id: ID!
-		item_name: String
-		item_type: String
-		item_status: String
-		item_price: Float
-		item_quantity_avail: Int
-		item_description: String
-		item_thumbnail_url: String
-		item_condition: String
-		item_owner_id(user_id: ID): ID!
-		item_date_created: Date
-		item_quantity_sold: Int
-		item_rating: Float
-		item_rating_num: Int
+	type Mission {
+		mission_patch(size: PatchSize): String
 	}
-	type item_rating {
-		item_rating_id: ID!
-		item_rating_itemrated_id: Int
-		item_rating_rater_id: Int
-		item_rating_rating: Float
-		item_rating_comment: String
-		item_rating_date: Date
+	enum PatchSize {
+		SMALL
+		LARGE
 	}
 
-	type Transaction {
-		transaction_id: ID!
-		transaction_item_id: Int
-		transaction_item_name: String
-		transaction_item_type: String
-		transaction_item_status: String
-		transaction_item_price: Float
-		transaction_item_thumbnail_url: String
-		transaction_item_condition: String
-		transaction_item_buyer_id(user_id: ID): ID!
-		transaction_item_seller_id(user_id: ID): ID!
-		transaction_date: Date
-		transaction_stripe_id: String
+	type LaunchSite {
+		site_name_long: String
 	}
 
 	type Query {
-		specificUserById(user_id: ID): User
-		searchUsers(
-			user_first_name: String
-			user_last_name: String
-			user_username: String
-			user_email: String
-			user_rating: Float
-		): [User]
-		listAllUsers: [User]!
-		listItemsByUser(user_id: ID): [Item]!
-		userAverageRatingByUserId(user_id: ID): User
-		totalUsers(user_account_deleted: Boolean): Int
-		listAllAvailableItems: [Item]!
-		searchItems(
-			user_id: ID
-			item_name: String
-			item_type: String
-			item_price: Float
-			item_quantity_avail: Int
-			item_condition: String
-			item_quantity_sold: Int
-		): [Item]
-		specificItemById(item_id: ID): Item
-		itemAverageRatingbyItemID(item_id: ID): Item
-		totalAvailableItems: Int
-		totalSoldItems: Int
+		specificUserById: User
+		listAllLaunches: [Launch]
+		listMyLaunches: [Launch]
+		oneLaunchView(flight_number: ID): Launch
 	}
 
 	type Mutation {
-		signUp(
-			user_first_name: String!
-			user_last_name: String!
-			user_username: String!
-			user_email: String!
-			user_password: String!
-		): SignUpResponse
-		login(user_email: String!, user_password: String!): LoginResponse
-		logout: logoutResponse
-		addItem(
-			user_id: ID
-			item_name: String!
-			item_type: String!
-			item_status: String
-			item_price: Float!
-			item_quantity_avail: Int!
-			item_description: String
-			item_thumbnail_url: String
-			item_condition: String
-		): addItemResponse
-		removeItem(user_id: ID, item_id: ID!): removeItemResponse
-		buyItem(user_id: ID, item_id: ID!): buyItemResponse
-		updateUser(
-			user_id: ID!
-			user_first_name: String
-			user_last_name: String
-			user_username: String
-			user_email: String
-			user_password: String
-			user_status: String
-		): updateUserResponse
-		updateItem(
-			# user_id: ID!
-			item_id: ID!
-			item_name: String
-			item_type: String
-			item_status: String
-			item_price: Float
-			item_quantity_avail: Int
-			item_description: String
-			item_thumbnail_url: String
-			item_condition: String
-		): updateItemResponse
-		addUserRating(
-			user_rating_rater_id: ID!
-			user_rating_rated_id: ID!
-			user_rating_rating: Float
-			user_rating_comment: String
-		): addUserRatingResponse
+		signUp(input: SignUpObject!): SignUpResponse
+		login(input: LoginObject!): LoginResponse
+		bookLaunch(flight_number: ID): bookLaunchResponse
 	}
 
 	type SignUpResponse {
 		message: String
 	}
 
+	input SignUpObject {
+		user_fullname: String!
+		user_username: String!
+		user_email: String!
+		user_password: String!
+	}
+
 	type LoginResponse {
-		token: String!
 		message: String
 	}
 
-	type addItemResponse {
-		message: String
-		item: Item
+	input LoginObject {
+		user_email: String!
+		user_password: String!
 	}
 
-	type removeItemResponse {
+	type bookLaunchResponse {
 		message: String
-		item: Item
-	}
-
-	type buyItemResponse {
-		message: String
-		item: Item
-		transaction: Transaction
-	}
-
-	type updateUserResponse {
-		message: String
-		updatedUser: [User]
-	}
-	type updateItemResponse {
-		message: String
-		updatedItem: [Item]
-	}
-
-	type addUserRatingResponse {
-		message: String
-		user_rating: user_rating
-	}
-
-	type logoutResponse {
-		message: String
+		launchBooked: Launch
 	}
 `;

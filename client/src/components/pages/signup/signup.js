@@ -36,11 +36,11 @@ const signup = ({ match, history }) => {
 				console.log(error);
 
 				alert(
-					'Sorry, there is already a Bazaar account associated with this email. Please try logging in or creating an account under another email.'
+					'Sorry, there is already a space<X>plorers account associated with this email. Please try logging in or creating an account under another email.'
 				);
 			}}
 			onCompleted={data => {
-				data.signUp.message === `Amazing! Welcome to Bazaar!`
+				data.signUp.message === `Amazing! Welcome to spaceexplorers!`
 					? history.push('/app')
 					: alert(`Sign up failed. Please try again!`);
 			}}
@@ -48,20 +48,22 @@ const signup = ({ match, history }) => {
 			{signup => (
 				<Formik
 					initialValues={{
-						user_first_name: '',
-						user_last_name: '',
+						user_fullname: '',
 						user_username: '',
 						user_email: '',
 						user_password: '',
 					}}
 					onSubmit={(values, { setSubmitting }) => {
+						console.log(values);
+						console.log('hi');
 						signup({
 							variables: {
-								user_first_name: values.user_first_name,
-								user_last_name: values.user_last_name,
-								user_username: values.user_username,
-								user_email: values.user_email,
-								user_password: values.user_password,
+								input: {
+									user_fullname: values.user_fullname,
+									user_username: values.user_username,
+									user_email: values.user_email,
+									user_password: values.user_password,
+								},
 							},
 						});
 						setSubmitting(false);
@@ -71,56 +73,37 @@ const signup = ({ match, history }) => {
 					{props => {
 						const { errors, handleChange, handleBlur, handleSubmit, isSubmitting, touched, values } = props;
 						return (
-							<div style={{ width: 456, margin: 'auto' }}>
-								<Card className="card">
+							<div style={{ width: 456, margin: 'auto' }} className="stars">
+								<Card className="card" style={{ paddingTop: 50 }}>
 									<Col span={18} offset={3} style={{ textAlign: 'center' }}>
-										<Genie />
+										<Genie style={{ fontSize: 150 }} />
 										<h1>Sign Up</h1>
 									</Col>
 									<Form {...formItemLayout} onSubmit={handleSubmit}>
 										<Form.Item>
 											<Input
-												id="user_first_name"
-												placeholder="First Name"
-												type="user_first_name"
+												id="user_fullname"
+												placeholder="Full Name"
+												type="text"
 												prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-												value={values.user_first_name}
+												value={values.user_fullname}
 												onChange={handleChange}
 												onBlur={handleBlur}
 												className={
-													errors.user_first_name && touched.user_first_name
+													errors.user_fullname && touched.user_fullname
 														? 'text-input error'
 														: 'text-input'
 												}
 											/>
-											{errors.user_first_name && touched.user_first_name && (
-												<div className="input-feedback">{errors.user_first_name}</div>
-											)}
-										</Form.Item>
-										<Form.Item>
-											<Input
-												id="user_last_name"
-												placeholder="Last Name"
-												type="user_last_name"
-												prefix={<Icon type="team" style={{ color: 'rgba(0,0,0,.25)' }} />}
-												value={values.user_last_name}
-												onChange={handleChange}
-												onBlur={handleBlur}
-												className={
-													errors.user_last_name && touched.user_last_name
-														? 'text-input error'
-														: 'text-input'
-												}
-											/>
-											{errors.user_last_name && touched.user_last_name && (
-												<div className="input-feedback">{errors.user_last_name}</div>
+											{errors.user_fullname && touched.user_fullname && (
+												<div className="input-feedback">{errors.user_fullname}</div>
 											)}
 										</Form.Item>
 										<Form.Item>
 											<Input
 												id="user_username"
 												placeholder="Username"
-												type="user_username"
+												type="text"
 												prefix={<Icon type="star" style={{ color: 'rgba(0,0,0,.25)' }} />}
 												value={values.user_username}
 												onChange={handleChange}
@@ -139,7 +122,7 @@ const signup = ({ match, history }) => {
 											<Input
 												id="user_email"
 												placeholder="Email"
-												type="user_password"
+												type="email"
 												prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
 												value={values.user_email}
 												onChange={handleChange}
@@ -158,7 +141,7 @@ const signup = ({ match, history }) => {
 											<Input
 												id="user_password"
 												placeholder="Password"
-												type="user_password"
+												type="text"
 												prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
 												value={values.user_password}
 												onChange={handleChange}

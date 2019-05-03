@@ -1,18 +1,22 @@
 import gql from 'graphql-tag';
 
-export const listAllAvailableItems = gql`
+export const listAllLaunches = gql`
 	query {
-		listAllAvailableItems {
-			item_id
-			item_name
-			item_price
-			item_description
-			item_thumbnail_url
-			item_type
-			item_status
-			item_rating
-			item_quantity_avail
-			item_owner_id
+		listAllLaunches {
+			flight_number
+			rocket {
+				rocket_id
+				rocket_type
+			}
+			mission_name
+			links {
+				mission_patch
+			}
+			launch_year
+			launch_date_local
+			launch_site {
+				site_name_long
+			}
 		}
 	}
 `;

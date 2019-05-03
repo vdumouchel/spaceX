@@ -5,6 +5,5 @@ module.exports = () => {
 	return {
 		...queryResolvers,
 		...mutationResolvers,
-		/* More resolvers TODO */
 	};
 };

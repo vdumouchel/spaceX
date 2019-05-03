@@ -9,17 +9,18 @@ import '../../../../css/style';
 // components imports
 
 import Navbar from '../navbar/navbar';
-import Feed from '../feed/feed';
+import Feed2 from '../feed/feed2';
 
 // declaring variables
 
 // const Logo = props => <Icon component={genie} {...props} />;
 
 const app = props => {
+	console.log('this is App props history: ', props.history);
 	return (
 		<div>
 			<Navbar />
-			<Feed />
+			<Feed2 />
 		</div>
 	);
 };

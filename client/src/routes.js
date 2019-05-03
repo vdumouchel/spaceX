@@ -10,7 +10,6 @@ import signup from './components/pages/signup/signup';
 import login from './components/pages/login/login';
 import app from './components/pages/App/app/app';
 import nomatch from './components/pages/nomatch/nomatch';
-import additem from './components/pages/App/additem/additem';
 
 export const Routes = () => {
 	return (
@@ -23,7 +22,7 @@ export const Routes = () => {
 				<Route exact path="/signup" component={signup} />
 				<Route exact path="/login" component={login} />
 				<Route exact path="/app" component={app} />
-				<Route exact path="/additem" component={additem} />
+
 				<Route component={nomatch} />
 			</Switch>
 		</div>

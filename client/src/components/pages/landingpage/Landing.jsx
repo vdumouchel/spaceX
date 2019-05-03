@@ -19,40 +19,47 @@ const Lampgear = props => <Icon component={lampgear} {...props} />;
 const Landing = props => {
 	return (
 		<div className="banner-wrapper">
-			{props.isMobile && (
-				<TweenOne animation={{ opacity: 1 }} className="banner-image-wrapper">
-					<div className="home-banner-image">
-						<Lampgear style={{ paddingTop: 8 }} />
+			<div className="stars">
+				{props.isMobile && (
+					<TweenOne animation={{ opacity: 1 }} className="banner-image-wrapper">
+						<div className="home-banner-image">
+							<Lampgear style={{ paddingTop: 8 }} />
+						</div>
+					</TweenOne>
+				)}
+				<QueueAnim className="banner-title-wrapper" type={props.isMobile ? 'bottom' : 'right'}>
+					<Logo style={{ paddingTop: 8, fontSize: 350 }} />
+					<div key="line" className="title-line-wrapper">
+						<div className="title-line" style={{ transform: 'translateX(-64px)' }} />
 					</div>
-				</TweenOne>
-			)}
-			<QueueAnim className="banner-title-wrapper" type={props.isMobile ? 'bottom' : 'right'}>
-				<div key="line" className="title-line-wrapper">
-					<div className="title-line" style={{ transform: 'translateX(-64px)' }} />
-				</div>
-				<Logo style={{ paddingTop: 8, fontSize: 200 }} />
-				<p key="content">
-					{' '}
-					&#60; Everyday, we make your techy gear wishes come true. Not to worry, there isn't a limit of 3 :P
-					/&#62;{' '}
-				</p>
-				<div key="button" className="button-wrapper">
-					<Link to="/signup">
-						<Button type="primary">Create an account</Button>
-					</Link>
-					<Link to="/login">
-						<Button style={{ margin: '0 16px' }} type="primary" ghost>
-							Log in
-						</Button>
-					</Link>
-					<GitHubButton key="github-button" type="stargazers" namespace="ant-design" repo="ant-design-pro" />
-				</div>
-			</QueueAnim>
-			{!props.isMobile && (
-				<TweenOne animation={{ opacity: 1 }} className="banner-image-wrapper">
-					<Lampgear />
-				</TweenOne>
-			)}
+					<p key="content" style={{ color: '#F88F77' }}>
+						{' '}
+						&#60; Everyday, we grant you space wishes. Pick your ship and explore! /&#62;{' '}
+					</p>
+
+					<div key="button" className="button-wrapper">
+						<Link to="/signup">
+							<Button type="primary">Create an account</Button>
+						</Link>
+						<Link to="/login">
+							<Button style={{ margin: '0 16px' }} type="primary" ghost>
+								Log in
+							</Button>
+						</Link>
+						<GitHubButton
+							key="github-button"
+							type="stargazers"
+							namespace="ant-design"
+							repo="ant-design-pro"
+						/>
+					</div>
+				</QueueAnim>
+				{!props.isMobile && (
+					<TweenOne animation={{ opacity: 1 }} className="banner-image-wrapper">
+						<Lampgear />
+					</TweenOne>
+				)}
+			</div>
 		</div>
 	);
 };

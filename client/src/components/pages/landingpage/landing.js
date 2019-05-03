@@ -38,10 +38,8 @@ class landing extends React.PureComponent {
 	render() {
 		return (
 			<DocumentTitle>
-				<div className="App">
-					<div>
-						<Landing isMobile={this.state.isMobile} />
-					</div>
+				<div className="App stars">
+					<Landing isMobile={this.state.isMobile} />
 				</div>
 			</DocumentTitle>
 		);

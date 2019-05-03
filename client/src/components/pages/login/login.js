@@ -43,17 +43,19 @@ const login = ({ match, history }) => {
 					: alert(`Login failed. Incorrect password. Please try again!`);
 			}}
 		>
-			{signup => (
+			{login => (
 				<Formik
 					initialValues={{
 						user_email: '',
 						user_password: '',
 					}}
 					onSubmit={(values, { setSubmitting }) => {
-						signup({
+						login({
 							variables: {
-								user_email: values.user_email,
-								user_password: values.user_password,
+								input: {
+									user_email: values.user_email,
+									user_password: values.user_password,
+								},
 							},
 						});
 						setSubmitting(false);
@@ -66,7 +68,7 @@ const login = ({ match, history }) => {
 							<div style={{ width: 456, margin: 'auto' }}>
 								<Card className="card">
 									<Col span={18} offset={3} style={{ textAlign: 'center' }}>
-										<Genie />
+										<Genie style={{ fontSize: 150 }} />
 										<h1>Welcome back!</h1>
 									</Col>
 									<Form {...formItemLayout} onSubmit={handleSubmit}>
@@ -74,7 +76,7 @@ const login = ({ match, history }) => {
 											<Input
 												id="user_email"
 												placeholder="Email"
-												type="user_password"
+												type="text"
 												prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
 												value={values.user_email}
 												onChange={handleChange}
@@ -93,7 +95,7 @@ const login = ({ match, history }) => {
 											<Input
 												id="user_password"
 												placeholder="Password"
-												type="user_password"
+												type="text"
 												prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
 												value={values.user_password}
 												onChange={handleChange}
@@ -126,7 +128,7 @@ const login = ({ match, history }) => {
 									</Form>
 								</Card>
 								<Card style={{ textAlign: 'center', marginTop: 20 }}>
-									Not a Bazaar techie yet? &nbsp;
+									Not a space&#60;X&#62;plorer yet? &nbsp;
 									<Link to="/signup">
 										<span>Create an account</span>
 									</Link>

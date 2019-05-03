@@ -8,18 +8,19 @@ import '../../../../css/views/additem.less';
 // components imports
 import { buyItemMutation } from '../../../gql-mutations/gql-mutations';
 import { Button } from 'antd';
-
+import { withRouter } from 'react-router';
 // declaring variables
 
 // declaring the exported function
 
-const buyItem = ({ match, history }) => {
-	let itemId = this.props.data.item_id;
+const BuyItem = props => {
+	console.log('this is buy item props history :', props);
+	let itemId = props.data.item_id;
+	console.log('this is itemId props; ', props.data.item_id);
 
 	return (
 		<Mutation
 			mutation={buyItemMutation}
-			variables={itemId}
 			onError={error => {
 				console.log(error);
 
@@ -28,25 +29,31 @@ const buyItem = ({ match, history }) => {
 			onCompleted={data => {
 				console.log(data);
 				console.log(data.buyItem);
-				// data.buyItem.message === `Amazing! You just bought this Bazaar item!`
-				// 	? history.push('/app')
-				// 	: alert(`Buying the item failed.`);
+				data.buyItem.message === `Amazing! You just bought this Bazaar item!`
+					? props.history.push('/app')
+					: alert(`Buying the item failed.`);
 			}}
 		>
-			{(buyItem, { data }) => (
-				<div>
-					<form
-						onSubmit={e => {
-							e.preventDefault();
-							buyItem({ variables: { itemId } });
-						}}
-					>
-						<Button type="submit">Buy Now!</Button>
-					</form>
-				</div>
-			)}
+			{(buyItem, { data }) => {
+				return (
+					<div>
+						<Button
+							onClick={() => {
+								console.log(itemId);
+								buyItem({
+									variables: {
+										item_id: itemId,
+									},
+								});
+							}}
+						>
+							Buy Now!
+						</Button>
+					</div>
+				);
+			}}
 		</Mutation>
 	);
 };
 
-export default buyItem;
+export default withRouter(BuyItem);

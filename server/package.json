@@ -1,15 +1,11 @@
 {
 	"scripts": {
 		"db:up": "yarn node-pg-migrate up --create-schema",
-		"db:drop": "psql -U postgres -d postgres -c \"DROP SCHEMA IF EXISTS \\\"bazaar\\\" CASCADE \"",
+		"db:drop": "psql -U postgres -d postgres -c \"DROP SCHEMA IF EXISTS \\\"spaceexplorers\\\" CASCADE \"",
 		"db:reset": "yarn db:drop && yarn db:up",
 		"db:seed": "node seeds/index.js",
 		"db:resetandseed": "yarn db:reset && yarn db:seed",
 		"dbaws:up": "yarn node-pg-migrate up --create-schema",
-		"dbaws:drop": "PGPASSWORD=bazaarpass psql -h bazaardb1.cfz8akdbftjm.us-east-2.rds.amazonaws.com -U bazaar_user -d bazaardb1 -c \"DROP SCHEMA IF EXISTS \\\"bazaar\\\" CASCADE\"",
-		"dbaws:reset": "yarn dbaws:drop && yarn dbaws:up",
-		"dbaws:seed": "node seeds/index.js",
-		"dbaws:resetandseed": "yarn dbaws:reset && yarn dbaws:seed",
 		"test": "jest",
 		"start": "node index.js",
 		"start:dev": "nodemon index.js"
@@ -18,6 +14,7 @@
 		"@okgrow/graphql-scalars": "^0.4.5",
 		"apollo-server": "^2.4.8",
 		"apollo-server-express": "^2.4.6",
+		"axios": "^0.18.0",
 		"bcrypt": "^3.0.4",
 		"bluebird": "^3.5.3",
 		"cookie-parser": "^1.4.4",

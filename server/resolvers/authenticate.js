@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 
 const authenticate = (app, req) => {
 	try {
-		const jwtCookie = req.cookies['bazaar_app'];
+		const jwtCookie = req.cookies['spaceexplorers_app'];
 		const verified_information = jwt.verify(jwtCookie, 'secret');
-		return verified_information.data.user_id;
+		return verified_information.data;
 	} catch (e) {
 		throw e.message;
 	}
