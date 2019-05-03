@@ -20,8 +20,8 @@ const { Meta } = Card;
 class Item extends Component {
 	constructor(props) {
 		super(props);
-		console.log('this is ItemProps history: ', props.history);
-		console.log(this.props.data.launch_site.site_name_long);
+		// console.log('this is ItemProps history: ', props.history);
+		// console.log(this.props.data.launch_site.site_name_long);
 	}
 
 	state = { visible: false, loading: true };
@@ -50,11 +50,11 @@ class Item extends Component {
 		let d = new Date(this.props.data.launch_date_local);
 		let date = d.toDateString();
 		// const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-		console.log(date);
+		// console.log(date);
 		return (
 			<div>
 				<Card
-					style={{ width: 500 }}
+					style={{ width: 517 }}
 					actions={[
 						<Icon type="like" />,
 						<Icon type="star" />,

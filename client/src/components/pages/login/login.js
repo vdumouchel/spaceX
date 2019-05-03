@@ -35,7 +35,7 @@ const login = ({ match, history }) => {
 			mutation={LogInMutation}
 			onError={error => {
 				console.log(error);
-				alert('No Bazaar account yet with this email. Please create an account.');
+				alert('No  space<X>plorers account yet with this email. Please create an account.');
 			}}
 			onCompleted={data => {
 				data.login.message === 'You successfully logged in!'

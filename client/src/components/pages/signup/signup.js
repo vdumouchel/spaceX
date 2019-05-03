@@ -12,6 +12,10 @@ import { signUpMutation } from '../../gql-mutations/gql-mutations';
 import { signUpValidation } from '../../yup-validation/yupValidation';
 import { genie } from '../../../img/svg';
 
+// import ACTIONS from Redux
+import ACTIONS from '../../../modules/actions';
+import { connect } from 'react-redux';
+
 // declaring variables
 const Genie = props => <Icon component={genie} {...props} />;
 
@@ -26,9 +30,24 @@ const formItemLayout = {
 	},
 };
 
+const mapStatetoProps = state => ({
+	user_fullname: state.user_email,
+	user_username: state.user_username,
+	user_email: state.user_email,
+	user_password: state.user_password,
+});
+
+const mapDispatchtoProps = dispatch => ({
+	textInputChange: data => dispatch(ACTIONS.textInputChange(data)),
+	// add other dispatch actions
+	// otherActionCall : data => dispatch(ACTIONS.otherActionCall(data)),
+});
+
 // declaring the exported function
 
-const signup = ({ match, history }) => {
+const signup = props => {
+	console.log('checking signup props: ', props);
+	console.log('this is history : ', props.history);
 	return (
 		<Mutation
 			mutation={signUpMutation}
@@ -41,7 +60,7 @@ const signup = ({ match, history }) => {
 			}}
 			onCompleted={data => {
 				data.signUp.message === `Amazing! Welcome to spaceexplorers!`
-					? history.push('/app')
+					? props.history.push('/app')
 					: alert(`Sign up failed. Please try again!`);
 			}}
 		>
@@ -160,7 +179,7 @@ const signup = ({ match, history }) => {
 										<Form.Item>
 											<span className="login-form-forgot" href="">
 												<Checkbox>
-													I accept Bazaar's <a>Terms & Policy</a>
+													I accept space&#60;X&#62;plorers <a>Terms & Policy</a>
 												</Checkbox>
 											</span>
 											<Button
@@ -183,4 +202,7 @@ const signup = ({ match, history }) => {
 	);
 };
 
-export default signup;
+export default connect(
+	mapStatetoProps,
+	mapDispatchtoProps
+)(signup);

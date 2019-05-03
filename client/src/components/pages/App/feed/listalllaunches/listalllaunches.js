@@ -16,7 +16,7 @@ import { listAllLaunches } from '../../../../gql-queries/gql-queries';
 // react component
 
 const ListAllLaunches = props => {
-	console.log('this is listAllLaunches history: ', props.history);
+	// console.log('this is listAllLaunches history: ', props.history);
 	return (
 		<Query query={listAllLaunches}>
 			{({ loading, errors, data }) => {

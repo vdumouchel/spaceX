@@ -16,7 +16,7 @@ import Feed2 from '../feed/feed2';
 // const Logo = props => <Icon component={genie} {...props} />;
 
 const app = props => {
-	console.log('this is App props history: ', props.history);
+	// console.log('this is App props history: ', props.history);
 	return (
 		<div>
 			<Navbar />

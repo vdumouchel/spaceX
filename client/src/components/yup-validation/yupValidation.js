@@ -9,7 +9,7 @@ export const signUpValidation = Yup.object().shape({
 		.min(3, ' Username should be at least 3 characters long.'),
 	user_email: Yup.string()
 		.email('Please provide a valid email address.')
-		.required('Email is required on Bazaar.'),
+		.required('Email is required on space<X>plorers.'),
 	user_password: Yup.string().required('Please protect your account with a password. '),
 });
 
