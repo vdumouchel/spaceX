@@ -22,8 +22,8 @@ const Feed2 = props => {
 	return (
 		<Layout>
 			<Content style={{ padding: '0 50px' }}>
-				<Breadcrumb style={{ margin: '16px 0' }}>
-					<BreadcrumbItem>Space&#60;X&#62;</BreadcrumbItem>
+				<Breadcrumb style={{ margin: '16px 21px', fontFamily: 'medium' }}>
+					<BreadcrumbItem>Home</BreadcrumbItem>
 					<BreadcrumbItem>Available Launches</BreadcrumbItem>
 				</Breadcrumb>
 				<div className="feedContent">

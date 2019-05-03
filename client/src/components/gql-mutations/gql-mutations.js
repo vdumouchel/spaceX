@@ -24,12 +24,26 @@ export const LogoutMutation = gql`
 	}
 `;
 
-export const buyItemMutation = gql`
-	mutation buyItemMutation($item_id: ID!) {
-		buyItem(item_name: $item_id) {
+export const bookLaunchMutation = gql`
+	mutation bookLaunchMutation($flight_number: ID) {
+		bookLaunch(flight_number: $flight_number) {
 			message
-			item
-			transaction
+			launchBooked {
+				flight_number
+				rocket {
+					rocket_id
+					rocket_type
+				}
+				mission_name
+				links {
+					mission_patch
+				}
+				launch_site {
+					site_name_long
+				}
+				launch_year
+				launch_date_local
+			}
 		}
 	}
 `;

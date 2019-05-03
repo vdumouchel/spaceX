@@ -20,7 +20,7 @@ const app = props => {
 	return (
 		<div>
 			<Navbar />
-			<Feed2 />
+			<Feed2 {...props} />
 		</div>
 	);
 };
