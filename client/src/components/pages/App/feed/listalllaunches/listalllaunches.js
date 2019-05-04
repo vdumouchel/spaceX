@@ -8,6 +8,8 @@ import 'antd/dist/antd.less';
 import '../../../../../css/style';
 import '../../../../../css/views/feed.less';
 import Launch from './launch';
+import CardSkeleton from '../sider/cardskeleton';
+import { Divider } from 'antd';
 
 // component imports
 import { listAllLaunches } from '../../../../gql-queries/gql-queries';
@@ -20,13 +22,24 @@ const ListAllLaunches = props => {
 	return (
 		<Query query={listAllLaunches}>
 			{({ loading, errors, data }) => {
-				if (loading) return <div>Loading...</div>;
+				if (loading)
+					return (
+						<div>
+							<CardSkeleton />
+						</div>
+					);
 				if (errors) return <div>Errors {JSON.stringify(errors)}</div>;
 				return (
 					<div>
-						{data.listAllLaunches.map(item => (
-							<Launch key={item.flight_number} data={item} {...props} />
-						))}
+						<div style={{ padding: '0 10px' }}>
+							<h1>Available Launches</h1>
+							<Divider />
+						</div>
+						<div>
+							{data.listAllLaunches.map(item => (
+								<Launch key={item.flight_number} data={item} {...props} />
+							))}
+						</div>
 					</div>
 				);
 			}}

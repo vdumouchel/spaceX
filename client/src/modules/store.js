@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-import { MainReducer } from './reducer';
+import MainReducer from './reducer';
 
 // basic redux functions to be called in boilerplate
 export default function configureStore(initialState) {

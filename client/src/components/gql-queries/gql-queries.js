@@ -20,3 +20,24 @@ export const listAllLaunches = gql`
 		}
 	}
 `;
+
+export const listMyLaunches = gql`
+	query {
+		listMyLaunches {
+			flight_number
+			rocket {
+				rocket_id
+				rocket_type
+			}
+			mission_name
+			links {
+				mission_patch
+			}
+			launch_site {
+				site_name_long
+			}
+			launch_year
+			launch_date_local
+		}
+	}
+`;

@@ -24,13 +24,13 @@ let initial_state = {
 const reduxStore = configureStore(initial_state);
 
 ReactDOM.render(
-	<ReduxProvider store={reduxStore}>
-		<ApolloProvider client={apolloClient}>
+	<ApolloProvider client={apolloClient}>
+		<ReduxProvider store={reduxStore}>
 			<Router>
 				<Routes />
 			</Router>
-		</ApolloProvider>
-	</ReduxProvider>,
+		</ReduxProvider>
+	</ApolloProvider>,
 	document.getElementById('root')
 );
 

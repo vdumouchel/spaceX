@@ -41,7 +41,7 @@ const Navbar = () => {
 	return (
 		<Layout className="layout">
 			<Header theme="light">
-				<Bluelogo className="logo" style={{ fontSize: 84, marginTop: 15 }} />
+				<Bluelogo className="logo" style={{ fontSize: 84, marginTop: 15, paddingLeft: 20 }} />
 
 				<Menu theme="light" mode="horizontal" style={{ lineHeight: '84px' }}>
 					<Link to="/">

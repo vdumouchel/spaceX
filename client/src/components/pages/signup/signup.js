@@ -47,7 +47,7 @@ const mapDispatchtoProps = dispatch => ({
 
 const signup = props => {
 	console.log('checking signup props: ', props);
-	console.log('this is history : ', props.history);
+	// console.log('this is history : ', props.history);
 	return (
 		<Mutation
 			mutation={signUpMutation}
@@ -89,8 +89,16 @@ const signup = props => {
 					}}
 					validationSchema={signUpValidation}
 				>
-					{props => {
-						const { errors, handleChange, handleBlur, handleSubmit, isSubmitting, touched, values } = props;
+					{formikProps => {
+						const {
+							errors,
+							handleChange,
+							handleBlur,
+							handleSubmit,
+							isSubmitting,
+							touched,
+							values,
+						} = formikProps;
 						return (
 							<div style={{ width: 456, margin: 'auto' }} className="stars">
 								<Card className="card" style={{ paddingTop: 50 }}>
@@ -105,8 +113,10 @@ const signup = props => {
 												placeholder="Full Name"
 												type="text"
 												prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-												value={values.user_fullname}
-												onChange={handleChange}
+												//get rid of value=
+												value={props.user_fullname}
+												onChange={data => props.textInputChange(data.target.value)}
+												// props.textInputChange(data.target.value)}
 												onBlur={handleBlur}
 												className={
 													errors.user_fullname && touched.user_fullname

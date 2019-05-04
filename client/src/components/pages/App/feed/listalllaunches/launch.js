@@ -54,7 +54,7 @@ class Item extends Component {
 		return (
 			<div>
 				<Card
-					style={{ width: 517 }}
+					style={{ maxWidth: 617 }}
 					actions={[
 						<Icon type="like" />,
 						<Icon type="star" />,
