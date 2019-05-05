@@ -8,7 +8,7 @@ import 'antd/dist/antd.less';
 import '../../../../../css/style';
 import '../../../../../css/views/feed.less';
 import '../../../../../css/views/launch.less';
-import { Card, Icon, Avatar, Button, Modal, Checkbox, Skeleton, Spin } from 'antd';
+import { Card, Icon, Avatar, Button, Modal, Checkbox } from 'antd';
 // component imports
 
 import BookLaunch from '../../booklaunch/booklaunch';
@@ -24,7 +24,10 @@ class Item extends Component {
 		// console.log(this.props.data.launch_site.site_name_long);
 	}
 
-	state = { visible: false, loading: true };
+	state = {
+		visible: false,
+		data: null,
+	};
 
 	showModal = e => {
 		this.setState({
@@ -51,6 +54,7 @@ class Item extends Component {
 		let date = d.toDateString();
 		// const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 		// console.log(date);
+
 		return (
 			<div>
 				<Card
@@ -100,7 +104,7 @@ class Item extends Component {
 									<Button key="back" onClick={this.handleCancel}>
 										Cancel
 									</Button>
-									<BookLaunch {...this.props} />
+									<BookLaunch handleOk={this.handleOk} {...this.props} />
 								</div>,
 							]}
 						>

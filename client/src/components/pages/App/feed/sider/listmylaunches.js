@@ -7,20 +7,21 @@ import { Query } from 'react-apollo';
 import 'antd/dist/antd.less';
 import '../../../../../css/style';
 import '../../../../../css/views/feed.less';
-import Launch from './launch';
-import CardSkeleton from '../sider/cardskeleton';
-import { Divider, Icon } from 'antd';
+import MyLaunches from './mylaunches';
+import CardSkeleton from './cardskeleton';
+import { Carousel } from 'antd';
 
 // component imports
-import { listAllLaunches } from '../../../../gql-queries/gql-queries';
+import { listMyLaunches } from '../../../../gql-queries/gql-queries';
 // declaring variables
 
 // react component
 
-const ListAllLaunches = props => {
+const ListMyLaunches = props => {
 	// console.log('this is listAllLaunches history: ', props.history);
+
 	return (
-		<Query query={listAllLaunches}>
+		<Query query={listMyLaunches}>
 			{({ loading, errors, data }) => {
 				if (loading)
 					return (
@@ -30,24 +31,17 @@ const ListAllLaunches = props => {
 					);
 				if (errors) return <div>Errors {JSON.stringify(errors)}</div>;
 				return (
-					<div>
-						<div style={{ padding: '0 10px' }}>
-							<h1>
-								<Icon type="rocket" />
-								&nbsp; Available Launches
-							</h1>
-							<Divider />
-						</div>
+					<Carousel>
 						<div>
-							{data.listAllLaunches.map(item => (
-								<Launch key={item.flight_number} data={item} {...props} />
+							{data.listMyLaunches.map(item => (
+								<MyLaunches key={item.flight_number} data={item} {...props} />
 							))}
 						</div>
-					</div>
+					</Carousel>
 				);
 			}}
 		</Query>
 	);
 };
 
-export default ListAllLaunches;
+export default ListMyLaunches;

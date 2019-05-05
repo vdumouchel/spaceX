@@ -44,9 +44,6 @@ const Navbar = () => {
 				<Bluelogo className="logo" style={{ fontSize: 84, marginTop: 15, paddingLeft: 20 }} />
 
 				<Menu theme="light" mode="horizontal" style={{ lineHeight: '84px' }}>
-					<Link to="/">
-						<Button type="primary">My Launches</Button>
-					</Link>
 					<Dropdown overlay={dropmenu}>
 						<span style={{ marginRight: 24 }}>
 							<Avatar icon="user" />

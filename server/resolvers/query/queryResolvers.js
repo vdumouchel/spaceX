@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const authenticate = require('../authenticate');
-const API_URL = 'https://api.spacexdata.com/v3/launches?limit=10';
+const API_URL = 'https://api.spacexdata.com/v3/launches/';
 
 module.exports = {
 	Query: {
